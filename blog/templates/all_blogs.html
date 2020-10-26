@@ -1,0 +1,14 @@
+<h1>Here you can find all blogs</h1>
+
+{% load static %}
+
+<img src="{% static 'blog/radood.jpg' %}" width="200" height="400"><br>
+
+
+{% for item in blog %}
+
+<a href="{% url 'details' item.id %}"> {{ item.title }}</a> <br>
+{{ item.description }} <br>
+{{ item.date }} <br>
+
+{% endfor %}

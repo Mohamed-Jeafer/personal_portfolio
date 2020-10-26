@@ -1,0 +1,16 @@
+<head>
+    <title>Personal Portfolio</title>
+</head>
+<body>
+<h1 style="text-align: center;">Welcome to my personal portfolio website</h1>
+{% for item in portfolio %}
+<h1>{{ item.title }}</h1>
+<p>{{ item.description }}</p>
+<img src="{{ item.image.url }}" alt="" height="150" width="150"> <br>
+{% if item.url %}
+<a href={{ item.url }}>Link</a>
+{% endif %}
+{% endfor %}
+
+
+</body>
