@@ -5,6 +5,15 @@
     <title>Detailed Blog</title>
 </head>
 <body>
+{% load static %}
+<nav dir="rtl">
+    <a href="{% url 'homepage' %}">Home Page</a>
+    <a href="{% static 'portfolio/MJ_Resume.pdf' %}">Resume</a>
+    <a href="">LinkedIn</a>
+    <a href="">GitHub</a>
+    <a href="{% url 'blog:all_blogs' %}">Blog</a>
+</nav>
+
 {% for item in blog %}
 <h1>{{ item.title }}</h1>
 <h5>{{ item.date }}</h5>

@@ -1,7 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Personal Portfolio</title>
 </head>
 <body>
+{% load static %}
+<nav dir="rtl">
+    <a href="{% static 'portfolio/MJ_Resume.pdf' %}">Resume</a>
+    <a href="">LinkedIn</a>
+    <a href="">GitHub</a>
+    <a href="{% url 'blog:all_blogs' %}">Blog</a>
+</nav>
 <h1 style="text-align: center;">Welcome to my personal portfolio website</h1>
 {% for item in portfolio %}
 <h1>{{ item.title }}</h1>
@@ -11,6 +21,5 @@
 <a href={{ item.url }}>Link</a>
 {% endif %}
 {% endfor %}
-
-
 </body>
+</html>
