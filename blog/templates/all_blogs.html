@@ -5,14 +5,12 @@
     <title>All Blogs</title>
 </head>
 <body>
+{% extends 'base_template.html' %}
+
+{% block content %}
+
 {% load static %}
-<nav dir="rtl">
-    <a href="{% url 'homepage' %}">Home Page</a>
-    <a href="{% static 'portfolio/MJ_Resume.pdf' %}">Resume</a>
-    <a href="">LinkedIn</a>
-    <a href="">GitHub</a>
-    <a href="{% url 'blog:all_blogs' %}">Blog</a>
-</nav>
+
 <div style="text-align: center;">
     <h1>Here you can find all blogs</h1>
     <h2>I have written {{ blog.count }} blog{{ blog.count|pluralize }} </h2>
@@ -20,15 +18,19 @@
 
 {% load static %}
 
-<img src="{% static 'blog/radood.jpg' %}" width="200" height="400"><br>
-
-
 {% for item in blog %}
-
-<a href="{% url 'blog:details' item.id %}"> {{ item.title }}</a> <br>
-{{ item.date|date:'d M Y'|upper }} <br>
-{{ item.description|truncatechars:100 }} <br>
-
+<div class="d-flex p-3 bd-highlight flex-row  justify-content-center align-items-center">
+    <div class="card" style="width: 55rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description|truncatechars:100|striptags }}</p>
+            <a href="{% url 'blog:details' item.id %}" class="btn btn-primary">Read More</a>
+            <p><small class="muted-text">{{ item.date|date:'d M Y'|upper }}</small></p>
+        </div>
+    </div>
+</div>
 {% endfor %}
+
+{% endblock %}
 </body>
 </html>

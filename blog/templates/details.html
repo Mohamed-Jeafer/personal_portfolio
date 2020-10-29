@@ -1,26 +1,24 @@
 <!DOCTYPE html>
+{% extends 'base_template.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Detailed Blog</title>
 </head>
 <body>
-{% load static %}
-<nav dir="rtl">
-    <a href="{% url 'homepage' %}">Home Page</a>
-    <a href="{% static 'portfolio/MJ_Resume.pdf' %}">Resume</a>
-    <a href="">LinkedIn</a>
-    <a href="">GitHub</a>
-    <a href="{% url 'blog:all_blogs' %}">Blog</a>
-</nav>
+
+
+{% block content %}
+<title>{{ blog.0.title }}</title>
+<link href="{% static 'blog/details.css' %}" rel="stylesheet">
 
 {% for item in blog %}
-<h1>{{ item.title }}</h1>
-<h5>{{ item.date }}</h5>
-<p>{{ item.description }}</p>
+<h1 class="text-center mt-5">{{ item.title }}</h1>
+<h5 class="text-center text-muted mb-5">{{ item.date|date:'F jS Y' }}</h5>
+<div>
+<p>{{ item.description|safe }}</p>
+</div>
 {% endfor %}
 
-
-
-</body>
-</html>
+{% endblock %}

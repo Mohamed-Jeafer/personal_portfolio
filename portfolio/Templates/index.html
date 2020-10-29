@@ -1,25 +1,46 @@
 <!DOCTYPE html>
+{% extends 'base_template.html' %}
+{% block content %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Personal Portfolio</title>
+    <link href="{% static 'portfolio/index.css' %}" rel="stylesheet">
 </head>
 <body>
-{% load static %}
-<nav dir="rtl">
-    <a href="{% static 'portfolio/MJ_Resume.pdf' %}">Resume</a>
-    <a href="">LinkedIn</a>
-    <a href="">GitHub</a>
-    <a href="{% url 'blog:all_blogs' %}">Blog</a>
-</nav>
-<h1 style="text-align: center;">Welcome to my personal portfolio website</h1>
-{% for item in portfolio %}
-<h1>{{ item.title }}</h1>
-<p>{{ item.description }}</p>
-<img src="{{ item.image.url }}" alt="" height="150" width="150"> <br>
-{% if item.url %}
-<a href={{ item.url }}>Link</a>
-{% endif %}
-{% endfor %}
+<div>
+    <h1>Welcome to</h1>
+    <h1>My Personal Portfolio</h1>
+</div>
+<div>
+    <center>
+        <img src="{% static 'portfolio/me.jpg' %}" height="500" width="300"
+             class="img-fluid rounded shadow p-3 mb-5 bg-white rounded" alt="me">
+    </center>
+</div>
+
+<div class="card-group d-flex p-3 bd-highlight justify-content-around align-items-center">
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for item in portfolio %}
+        <div class="col mb-4">
+            <div class="card h-100 shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                <img src="{{ item.image.url }}" class="img-hover card-img-top h-50 mx-auto d-block img-thumbnail"
+                     alt="portfolio image">
+                <div class="card-body" >
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text flex-grow-1">{{ item.description }}</p>
+                    {% if item.url %}
+                    <a href="{{ item.url }}" class="btn btn-primary link-btn">Link</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 </body>
 </html>
+
+{% endblock %}
